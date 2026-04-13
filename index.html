@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>我的名片</title>
+    <style>
+        body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(245, 246, 251);
+        }
+        
+        #main_box {
+            width: 85%;
+            margin: 0;
+            padding: 7.5%;
+            background-color: white;
+        }
+        
+        #main_content {
+            width: 100%;
+            max-width: 350px;
+            height: calc(70vh);
+            min-height: 400px;
+            max-height: 600px;
+            margin: auto;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgb(64, 64, 64);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        #card_head {
+            margin: 25px 25px 0 25px;
+        }
+        
+        #card_head_img {
+            display: block;
+            border: 2px rgb(255, 255, 255) solid;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgb(255, 255, 255);
+        }
+        
+        #card_name_title {
+            margin: 25px 25px 0 25px;
+        }
+        
+        #card_name_text {
+            margin: 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        #card_title_text {
+            margin: 25px 0 0 0;
+            font-size: 12.5px;
+            font-weight: bold;
+        }
+        
+        .card_vertical_text {
+            writing-mode: tb-rl;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 50px;
+            margin: auto;
+            padding: 2px;
+            background-image: linear-gradient(to right bottom, rgb(199, 134, 103), rgb(253, 239, 218), rgb(199, 134, 103));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        #card_contact {
+            position: absolute;
+            margin: 0 25px;
+            bottom: 20px;
+            width: calc(100% - 50px);
+        }
+        
+        .card_horizontal_text {
+            writing-mode: rl-tb;
+            text-align: left;
+            margin: 5px 0 5px 0;
+            font-weight: bold;
+            background-image: linear-gradient(to right, rgb(199, 134, 103), rgb(253, 239, 218), rgb(199, 134, 103));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        #pinfo_box {
+            max-width: 350px;
+            margin: auto;
+            padding: 7.5%;
+            padding-top: 0;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        #mini_contact {
+            border-radius: 10px;
+            background-color: white;
+            display: flex;
+            box-shadow: 0px 0px 20px rgb(192, 192, 192);
+        }
+        
+        #mini_contact_head_box {
+            padding: 25px;
+        }
+        
+        #mini_contact_head {
+            display: block;
+            border: 2px rgb(255, 255, 255) solid;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgb(255, 255, 255);
+        }
+        
+        #mini_contact_name_title {
+            width: calc(100% - 25px - 104px - max(20%, 70px));
+            padding-top: 30px;
+        }
+        
+        #mini_contact_btn_box {
+            display: flex;
+            padding-right: 25px;
+            width: 20%;
+            min-width: 70px;
+        }
+        
+        .module {
+            /* display: flex; */
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0px 0px 20px rgb(192, 192, 192);
+            /* padding-right: 25px; */
+            /* width: 20%; */
+            /* min-width: 70px; */
+        }
+        
+        #mini_contact_btn {
+            margin: auto;
+            border-radius: 20px;
+            border: solid 1px rgb(196, 196, 196);
+            background-color: white;
+            color: rgb(16, 16, 16);
+            font-size: 12px;
+            padding: 2.5px 10px;
+            height: 20px;
+            line-height: 20px;
+            cursor: pointer;
+        }
+        
+        .mini_contact_name_title {
+            padding: 0;
+            margin: 5px;
+            line-height: 100%;
+        }
+        
+        #mini_contact_name {
+            font-size: 17.5px;
+            font-weight: bold;
+            color: black;
+        }
+        
+        #mini_contact_title {
+            font-size: 12.5px;
+            color: gray;
+        }
+        
+        .mouse_btn_hover {
+            animation-duration: 0.5s;
+            animation-name: mouse_btn_hover;
+            animation-fill-mode: forwards;
+            -webkit-animation-fill-mode: forwards;
+        }
+        
+        .mouse_btn_leave {
+            animation-duration: 0.5s;
+            animation-name: mouse_btn_leave;
+            animation-fill-mode: forwards;
+            -o-animation-fill-mode: forwards;
+        }
+        
+        @keyframes mouse_btn_hover {
+            from {
+                background-color: white;
+            }
+            to {
+                background-color: rgb(220, 220, 220);
+            }
+        }
+        
+        @keyframes mouse_btn_leave {
+            from {
+                background-color: rgb(220, 220, 220);
+            }
+            to {
+                background-color: white;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main_box">
+        <div id="main_content">
+            <div id="card_head">
+                <img id="card_head_img" src="" alt="">
+            </div>
+            <div id="card_name_title">
+                <p id="card_name_text" class="card_vertical_text">Name</p>
+                <p id="card_title_text" class="card_vertical_text">Title</p>
+            </div>
+            <div id="card_contact">
+                <p id="contact_company" class="card_horizontal_text">Company</p>
+                <p id="contact_tel" class="card_horizontal_text">Tel</p>
+                <p id="contact_mail" class="card_horizontal_text">Mail</p>
+            </div>
+        </div>
+    </div>
+    <div id="pinfo_box">
+        <div id="mini_contact">
+            <div id="mini_contact_head_box">
+                <img id="mini_contact_head" src="">
+            </div>
+            <div id="mini_contact_name_title">
+                <p id="mini_contact_name" class="mini_contact_name_title">Name</p>
+                <p id="mini_contact_title" class="mini_contact_name_title">Title</p>
+            </div>
+            <div id="mini_contact_btn_box">
+                <span id="mini_contact_btn" onmouseover="this.className = 'mouse_btn_hover'" onmouseleave="this.className = 'mouse_btn_leave'">
+                    <a style="color: rgb(16, 16, 16); text-decoration: none; " href="http://sun.puresun.com.cn/wechat/">
+                        联系方式
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div id="pinfo_resume" class="module">
+            <p class="module_name">个人简介</p>
+            <hr>
+            <p class="module_content">Personal resume</p>
+        </div>
+    </div>
+    <script>
+        var user_info = {
+            name: "欧阳留洋",
+            title: "创始人",
+            company: "开封市淳阳科技有限责任公司",
+            contact: {
+                tel: "15378759256",
+                mail: "Mrouyang@live.com",
+                address: ""
+            },
+            head: "./images/card_head.jpg",
+            backgroundImage: "./images/main_background.png"
+        }
+
+        // console.log(typeof (user_info))
+
+        function fillUserinfo(info) {
+            document.title = info.name + "的名片"
+            main_content = document.getElementById("main_content").style.background = 'url(' + info.backgroundImage + ') center / cover no-repeat'
+            document.getElementById("card_name_text").innerHTML = info.name
+            document.getElementById("card_title_text").innerHTML = info.title
+            document.getElementById("card_head_img").src = info.head
+            document.getElementById("contact_company").innerHTML = info.company
+            document.getElementById("contact_tel").innerHTML = info.contact.tel
+            document.getElementById("contact_mail").innerHTML = info.contact.mail
+            document.getElementById("mini_contact_head").src = info.head
+            document.getElementById("mini_contact_name").innerHTML = info.name
+            document.getElementById("mini_contact_title").innerHTML = info.title
+            const changeFavicon = link => {
+                let $favicon = document.querySelector('link[rel="icon"]');
+                if ($favicon !== null) {
+                    $favicon.href = link
+                } else {
+                    $favicon = document.createElement("link");
+                    $favicon.rel = "icon"
+                    $favicon.href = link
+                    document.head.appendChild($favicon);
+                }
+            };
+            changeFavicon(info.head)
+        }
+
+        function on_mouse_over(btn) {
+            console.log(btn)
+            btn.className = "mouse_btn_hover"
+        }
+
+        function on_mouse_leave(btn) {
+            console.log(btn)
+            btn.className = "mouse_btn_hover"
+        }
+
+        function gaussBlur(imgData) {
+            var pixes = imgData.data;
+            var width = imgData.width;
+            var height = imgData.height;
+            var gaussMatrix = [],
+                gaussSum = 0,
+                x, y,
+                r, g, b, a,
+                i, j, k, len;
+
+            var radius = 10;
+            var sigma = 5;
+
+            a = 1 / (Math.sqrt(2 * Math.PI) * sigma);
+            b = -1 / (2 * sigma * sigma);
+            //生成高斯矩阵
+            for (i = 0, x = -radius; x <= radius; x++, i++) {
+                g = a * Math.exp(b * x * x);
+                gaussMatrix[i] = g;
+                gaussSum += g;
+
+            }
+            //归一化, 保证高斯矩阵的值在[0,1]之间
+            for (i = 0, len = gaussMatrix.length; i < len; i++) {
+                gaussMatrix[i] /= gaussSum;
+            }
+            //x 方向一维高斯运算
+            for (y = 0; y < height; y++) {
+                for (x = 0; x < width; x++) {
+                    r = g = b = a = 0;
+                    gaussSum = 0;
+                    for (j = -radius; j <= radius; j++) {
+                        k = x + j;
+                        if (k >= 0 && k < width) { //确保 k 没超出 x 的范围
+                            //r,g,b,a 四个一组
+                            i = (y * width + k) * 4;
+                            r += pixes[i] * gaussMatrix[j + radius];
+                            g += pixes[i + 1] * gaussMatrix[j + radius];
+                            b += pixes[i + 2] * gaussMatrix[j + radius];
+                            // a += pixes[i + 3] * gaussMatrix[j];
+                            gaussSum += gaussMatrix[j + radius];
+                        }
+                    }
+                    i = (y * width + x) * 4;
+                    // 除以 gaussSum 是为了消除处于边缘的像素, 高斯运算不足的问题
+                    // console.log(gaussSum)
+                    pixes[i] = r / gaussSum;
+                    pixes[i + 1] = g / gaussSum;
+                    pixes[i + 2] = b / gaussSum;
+                    // pixes[i + 3] = a ;
+                }
+            }
+            //y 方向一维高斯运算
+            for (x = 0; x < width; x++) {
+                for (y = 0; y < height; y++) {
+                    r = g = b = a = 0;
+                    gaussSum = 0;
+                    for (j = -radius; j <= radius; j++) {
+                        k = y + j;
+                        if (k >= 0 && k < height) { //确保 k 没超出 y 的范围
+                            i = (k * width + x) * 4;
+                            r += pixes[i] * gaussMatrix[j + radius];
+                            g += pixes[i + 1] * gaussMatrix[j + radius];
+                            b += pixes[i + 2] * gaussMatrix[j + radius];
+                            // a += pixes[i + 3] * gaussMatrix[j];
+                            gaussSum += gaussMatrix[j + radius];
+                        }
+                    }
+                    i = (y * width + x) * 4;
+                    pixes[i] = r / gaussSum;
+                    pixes[i + 1] = g / gaussSum;
+                    pixes[i + 2] = b / gaussSum;
+                }
+            }
+            //end
+            return imgData;
+        }
+
+        function generate_div_bk(div_id, img) {
+            var div = document.getElementById(div_id)
+            const baseList = []
+                // console.log("div size is:" + div.offsetWidth + "*" + div.offsetHeight + "px")
+            const canvas = document.createElement("canvas")
+            canvas.width = div.offsetWidth
+            canvas.height = div.offsetHeight
+            var image = new Image()
+                // console.log(img)
+            image.src = img
+                // console.log("Loading image")
+
+            function wait_img_loadding_finish() {
+                if (image.complete) {
+                    // console.log("Image loadded")
+                    // cut image center
+                    var dx = 0,
+                        dy = 0,
+                        dw = canvas.width,
+                        dh = canvas.height * 0.8
+                    var sw = 0,
+                        sh = 0
+                    if (image.width / image.height < dw / dh) {
+                        sw = image.width
+                        sh = image.width * (dh / dw)
+                        dy = (image.height - sh) / 2
+                    } else {
+                        sh = image.height
+                        sw = sh * (dw / dh)
+                        dx = (image.width - sw) / 2
+                    }
+                    contact = canvas.getContext('2d')
+                    contact.drawImage(
+                            image,
+                            dx, dy, sw, sh,
+                            0, 0, dw, dh)
+                        // console.log("contact.width:" + canvas.width + "px, contact.height:" + canvas.height + "px")
+                    var imgData = contact.getImageData(0, 0, canvas.width, canvas.height);
+                    gaussBlur(imgData)
+                        // console.log("imgData.width=" + imgData.width + ", dh=" + dh)
+                        // console.log(typeof (imgData.data))
+                        // darkening background picture
+                    var gray_scale = 0.5
+                    for (var y = 0; y < dh; y++) {
+                        for (var x = 0; x < imgData.width; x++) {
+                            var pixel = (y * imgData.width + x) * 4
+                            imgData.data[pixel] = imgData.data[pixel] * gray_scale
+                            imgData.data[pixel + 1] = imgData.data[pixel + 1] * gray_scale
+                            imgData.data[pixel + 2] = imgData.data[pixel + 2] * gray_scale
+                        }
+                    }
+                    contact.putImageData(imgData, 0, 0);
+                    // console.log(contact.canvas.toDataURL("image/png"))
+                    div.style.background = 'url("' + contact.canvas.toDataURL("image/png") + '") center / cover no-repeat'
+                } else {
+                    // console.log("Load fail, reloadding")
+                    setTimeout(() => {
+                        wait_img_loadding_finish()
+                    }, 1);
+                }
+            }
+            wait_img_loadding_finish()
+        }
+
+        window.onload = function() {
+            generate_div_bk("main_box", user_info.backgroundImage)
+            fillUserinfo(user_info)
+        }
+    </script>
+</body>
+
+</html>

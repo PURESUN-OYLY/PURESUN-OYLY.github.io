@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico">
+    <title>添加我的微信</title>
+    <script type="text/javascript" src="https://a.rhurl.cn/js/common/md5.js?v=1.3.6"></script>
+    <script type="text/javascript" src="https://a.rhurl.cn/js/common/method.utils.js?v=1.3.6"></script>
+    <script type="text/javascript" src="https://a.rhurl.cn/js/common/json2.js?v=1.3.6"></script>
+    <script type="text/javascript" src="https://a.rhurl.cn/js/common/clipboard.min.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0 auto;
+        }
+
+        .layout {
+            width: 100%;
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .title {
+            font-size: 17px;
+            color: #242627;
+            margin-top: 16px;
+            line-height: var(--chakra-lineHeights-base);
+            user-select: auto;
+        }
+
+        .layout1 {
+            width: 100%;
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .img-box {
+            width: 64px;
+            height: 64px;
+        }
+
+        .icom_img {
+            width: 16px;
+            height: 16px;
+        }
+
+        .icon_text {
+            font-size: 14px;
+            color: #C5C5C5;
+            margin-left: 8px;
+            font-weight: 320;
+        }
+
+        .heand_img {
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+            position: relative;
+            border-radius: 5px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        .text_g {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.5);
+        }
+
+        .text_link {
+            font-size: 14px;
+            transition: all 0.15s ease-out 0s;
+            cursor: pointer;
+            text-decoration: none;
+            outline: none;
+            color: rgb(108, 125, 162);
+        }
+
+        .jumpBtn {
+            display: inline-flex;
+            -webkit-box-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            justify-content: center;
+            transition: all 250ms ease 0s;
+            border-radius: 5px;
+            border: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 184px;
+            font-size: 16px;
+            color: #fff;
+            line-height: 1.2;
+            min-height: 40px;
+            font-weight: 700;
+            padding-left: 24px;
+            padding-right: 24px;
+            background-color: #07c160;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <img id="htmlIcon" src="https://a.rhurl.cn/cOXBcQ" style="width: 0;opacity: 0;"> -->
+    <div class="layout">
+        <div class="img-box">
+            <img class="heand_img" src="https://a.rhurl.cn/img/icon_wx_logo.png">
+        </div>
+        <a class="title">微信</a>
+        <div style="margin-top: 4px;flex-direction: row; margin-top: 8px; overflow:hidden; display: flex;justify-content: center; align-items: center;">
+            <img class="icom_img" src="https://a.rhurl.cn/img/icon_c5_wx.png">
+            <a class="icon_text">微信</a>
+        </div>
+    </div>
+    <div class="layout1">
+        <button class="jumpBtn" type="button" onclick="onJumpWxBtn()">前往微信打开</button>
+        <div style="margin-top: 24px; margin-bottom: 100px;overflow:hidden">
+            <a class="text_g">无法打开时，可使用默认浏览器打开。</a>
+            <a class="text_link" data-clipboard-target="#bar">复制链接</a>
+        </div>
+    </div>
+<!--
+    <img class="fullScreen" style="width: 100%; height: auto; position:absolute; left: 0px;top: 0px; display: none;" onclick="onJumpWxBtn()">
+-->
+    <p id="bar" style="position:absolute; left: 0px;top: 0px;font-size: 0px; ">http://sun.puresun.com.cn/wechat/qrcode.html</p>
+    <script>
+        executeUrl();
+        var templetImg = getStorageUrlString("templetImg");
+        if (!isEmpty(templetImg)) {
+            displayWholeDrawing(templetImg);
+        }
+
+        getElement("#bar").innerHTML = decodeURIComponent(window.sessionStorage.getItem("URL_LINK"));
+
+        if (isDouyin()) {
+            getElement(".layout1").style.justifyContent = "flex-start";
+        }
+
+        var json = window.sessionStorage.getItem('KEYDATABEAN');
+        if (!isEmpty(json)) {
+            var data = JSON.parse(json);
+
+            setPagesTitleIcon(data);
+
+            if (!isEmpty(data['guide_background']) && isEmpty(templetImg)) {
+                displayWholeDrawing(data['guide_background']);
+            }
+
+            if (isEmpty(data['guide_background']) && isEmpty(templetImg)) {
+                getElement(".title").innerHTML = data['guide_name'];
+            }
+        }
+
+        function onJumpWxBtn() {
+            window.location.href = 'weixin://'
+        }
+
+        function displayWholeDrawing(str) {
+            if (!str.includes("http")) {
+                str = RES_URL_BASE + str;
+            }
+
+            getElement(".fullScreen").style.display = "inline";
+            getElement(".fullScreen").src = decodeURIComponent(str);
+            getElement(".layout1").style.display = "none";
+            getElement(".layout").style.display = "none";
+        }
+
+        new ClipboardJS('.text_link', {}).on('success', function (e) {
+            alert("复制成功！");
+            e.clearSelection();
+        });
+
+        setTimeout(function () {
+            getElement(".jumpBtn").innerHTML = "前往微信打开";
+        }, 2000);
+
+
+        window.onload = function () {
+            function is_weixin() {
+                var ua = navigator.userAgent.toLowerCase()
+                if (ua.match(/MicroMessenger/i) == "micromessenger") {
+                    return true
+                } else {
+                    return false
+                }
+            }
+
+            var isWeixin = is_weixin()
+            if (isWeixin) {
+                // alert("Now is in wechat.")
+                // window.location.replace("https://u.wechat.com/EMOf7voK6MjOHnz9plXqnD8")
+                window.location.replace("http://sun.puresun.com.cn/wechat/qrcode.html")
+            }
+            else {
+                alert("请使用微信扫一扫扫描二维码")
+                window.location.href = 'weixin://'
+            }
+        }
+    </script>
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
