@@ -4,209 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-    <title>我的名片</title>
-    <style>
-        body {
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            background-color: rgb(245, 246, 251);
-        }
-        
-        #main_box {
-            width: 85%;
-            margin: 0;
-            padding: 7.5%;
-            background-color: white;
-        }
-        
-        #main_content {
-            width: 100%;
-            max-width: 350px;
-            height: calc(70vh);
-            min-height: 400px;
-            max-height: 600px;
-            margin: auto;
-            border-radius: 15px;
-            box-shadow: 0px 0px 20px rgb(64, 64, 64);
-            overflow: hidden;
-            position: relative;
-        }
-        
-        #card_head {
-            margin: 25px 25px 0 25px;
-        }
-        
-        #card_head_img {
-            display: block;
-            border: 2px rgb(255, 255, 255) solid;
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgb(255, 255, 255);
-        }
-        
-        #card_name_title {
-            margin: 25px 25px 0 25px;
-        }
-        
-        #card_name_text {
-            margin: 0;
-            font-size: 20px;
-            font-weight: bold;
-        }
-        
-        #card_title_text {
-            margin: 25px 0 0 0;
-            font-size: 12.5px;
-            font-weight: bold;
-        }
-        
-        .card_vertical_text {
-            writing-mode: tb-rl;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            width: 50px;
-            margin: auto;
-            padding: 2px;
-            background-image: linear-gradient(to right bottom, rgb(199, 134, 103), rgb(253, 239, 218), rgb(199, 134, 103));
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        
-        #card_contact {
-            position: absolute;
-            margin: 0 25px;
-            bottom: 20px;
-            width: calc(100% - 50px);
-        }
-        
-        .card_horizontal_text {
-            writing-mode: rl-tb;
-            text-align: left;
-            margin: 5px 0 5px 0;
-            font-weight: bold;
-            background-image: linear-gradient(to right, rgb(199, 134, 103), rgb(253, 239, 218), rgb(199, 134, 103));
-            -webkit-background-clip: text;
-            color: transparent;
-        }
-        
-        #pinfo_box {
-            max-width: 350px;
-            margin: auto;
-            padding: 7.5%;
-            padding-top: 0;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-        
-        #mini_contact {
-            border-radius: 10px;
-            background-color: white;
-            display: flex;
-            box-shadow: 0px 0px 20px rgb(192, 192, 192);
-        }
-        
-        #mini_contact_head_box {
-            padding: 25px;
-        }
-        
-        #mini_contact_head {
-            display: block;
-            border: 2px rgb(255, 255, 255) solid;
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgb(255, 255, 255);
-        }
-        
-        #mini_contact_name_title {
-            width: calc(100% - 25px - 104px - max(20%, 70px));
-            padding-top: 30px;
-        }
-        
-        #mini_contact_btn_box {
-            display: flex;
-            padding-right: 25px;
-            width: 20%;
-            min-width: 70px;
-        }
-        
-        .module {
-            /* display: flex; */
-            border-radius: 10px;
-            background-color: white;
-            box-shadow: 0px 0px 20px rgb(192, 192, 192);
-            /* padding-right: 25px; */
-            /* width: 20%; */
-            /* min-width: 70px; */
-        }
-        
-        #mini_contact_btn {
-            margin: auto;
-            border-radius: 20px;
-            border: solid 1px rgb(196, 196, 196);
-            background-color: white;
-            color: rgb(16, 16, 16);
-            font-size: 12px;
-            padding: 2.5px 10px;
-            height: 20px;
-            line-height: 20px;
-            cursor: pointer;
-        }
-        
-        .mini_contact_name_title {
-            padding: 0;
-            margin: 5px;
-            line-height: 100%;
-        }
-        
-        #mini_contact_name {
-            font-size: 17.5px;
-            font-weight: bold;
-            color: black;
-        }
-        
-        #mini_contact_title {
-            font-size: 12.5px;
-            color: gray;
-        }
-        
-        .mouse_btn_hover {
-            animation-duration: 0.5s;
-            animation-name: mouse_btn_hover;
-            animation-fill-mode: forwards;
-            -webkit-animation-fill-mode: forwards;
-        }
-        
-        .mouse_btn_leave {
-            animation-duration: 0.5s;
-            animation-name: mouse_btn_leave;
-            animation-fill-mode: forwards;
-            -o-animation-fill-mode: forwards;
-        }
-        
-        @keyframes mouse_btn_hover {
-            from {
-                background-color: white;
-            }
-            to {
-                background-color: rgb(220, 220, 220);
-            }
-        }
-        
-        @keyframes mouse_btn_leave {
-            from {
-                background-color: rgb(220, 220, 220);
-            }
-            to {
-                background-color: white;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Business Card</title>
 </head>
 
 <body>
@@ -236,47 +35,125 @@
                 <p id="mini_contact_title" class="mini_contact_name_title">Title</p>
             </div>
             <div id="mini_contact_btn_box">
-                <span id="mini_contact_btn" onmouseover="this.className = 'mouse_btn_hover'" onmouseleave="this.className = 'mouse_btn_leave'">
-                    <a style="color: rgb(16, 16, 16); text-decoration: none; " href="http://sun.puresun.com.cn/wechat/">
-                        联系方式
-                    </a>
+                <span id="mini_contact_btn" onmouseover="this.className = 'mouse_btn_hover'"
+                    onmouseleave="this.className = 'mouse_btn_leave'">
+                    <a style="color: rgb(16, 16, 16); text-decoration: none;" id="btn_cnt"
+                        href="./wechat/qrcode.html">Contact</a>
                 </span>
             </div>
         </div>
-        <div id="pinfo_resume" class="module">
-            <p class="module_name">个人简介</p>
-            <hr>
-            <p class="module_content">Personal resume</p>
-        </div>
     </div>
+    <style>
+        .block_title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-block-start: 0;
+            margin-block-end: 0;
+            font-family: "Microsoft YaHei";
+        }
+
+        .block_content {
+            font-size: 14px;
+            margin-block-start: 0.5em;
+            margin-block-end: 0;
+            font-family: "Microsoft YaHei";
+            white-space: pre-line;
+        }
+    </style>
     <script>
         var user_info = {
-            name: "欧阳留洋",
-            title: "创始人",
-            company: "开封市淳阳科技有限责任公司",
-            contact: {
-                tel: "15378759256",
-                mail: "Mrouyang@live.com",
-                address: ""
-            },
             head: "./images/card_head.jpg",
-            backgroundImage: "./images/main_background.png"
+            backgroundImage: "./images/main_background.png",
+            lan: ["zh", "en", "ru"],
+            blktype: ["card", "list"],
+            name: ["欧阳留洋", "Ouyang Liuyang", "Оу Люян"],
+            title: ["人工智能与机器人", "AI and Robotics", "ИИРСУ"],
+            // title: ["机器人工程师", "Robot Engineer", "Инженер-робототехник()"],
+            company: ["莫斯科大学", "Moscow University", "МГУ"],
+            contact: {
+                title: ["联系方式", "Contact", "Контакты"],
+                tel: ["15378759256", "+86 15378759256", "+7 9151 66 62 33"],
+                mail: ["Mrouyang@live.com", "Mrouyang@live.com", "puresun@mail.ru"],
+                address: ["列宁山1号1栋G单元", "Leninskie Gory, 1, building 1, G unit", "Ленинские горы, д. 1, стр. 1, корп, Г"]
+            },
+            content: [{
+                blktype: "card",
+                title: ["个人简介", "Personal Resume", "Персональный резюме"],
+                content: [
+                    "我是一个人工智能与机器人专业的学生，喜欢研究和实验新的技术。",
+                    "I am a student of artificial intelligence and robotics. I like to research and experiment with new technologies.",
+                    "Я - студент архитектуры и программирования. Я люблю исследовать и экспериментировать с новыми технологиями."
+                ]
+            },
+            {
+                blktype: "list",
+                title: ["教育经历", "Education", "Образование"],
+                list: [
+                    [
+                        "2017.09-2021.06\n河南大学，全日制本科，软件工程专业",
+                        "2017.09-2021.06\nHenan University, full-time BSc, software Engineering",
+                        "2017.09-2021.06\nХэнаньский университет, бакалавр, программная инженерия"
+                    ],
+                    [
+                        "2024.09-2025.06\n普希金学院，俄语",
+                        "2024.09-2025.06\nIRLC of MSU, Student at the IRLC",
+                        "2024.09-2025.06\nИРЯиК МГУ, студент ИРЯиК"
+                    ],
+                    [
+                        "2025.09-至今\n莫斯科大学，全日制硕士，人工智能与机器人专业",
+                        "2025.09-Now\nMSU, full-time Master's, AI & Robotics",
+                        "2025.09-по н.в.\nМГУ, магистратура, искусственный интеллект, работы и систем управления"
+                    ]
+                ]
+            },
+            {
+                blktype: "list",
+                title: ["工作经历", "Work Experience", "Опыт работы"],
+                list: [
+                    [
+                        "2020.09-2021.06\n河南大学，办公室主任助理",
+                        "2020.09-2021.06\nHenan University, Assistant to the Office Director",
+                        "2020.09-2021.06\nХэнаньский университет, ассистент заведующего канцелярией"
+                    ],
+                    [
+                        "2021.06-2022.04\n河南中微真空设备有限公司，硬件工程师",
+                        "2021.06-2022.04\nHenan Zhongwei Vacuum Equipment Co., Ltd., Hardware Engineer",
+                        "2021.06-2022.04\nКомпания «Хэнань Чжунвэй Вакуум Экипмент», инженер-аппаратчик"
+                    ],
+                    [
+                        "2022.04-2024.08\n开封市淳阳科技有限责任公司，技术总监",
+                        "2022.04-2024.08\nKaifeng Chunyang Technology Co., Ltd., Technical Director",
+                        "2022.04-2024.08\nКомпания «Кайфэнь Чюньян Технолоджи», технический директор"
+                    ]
+                ]
+            }
+            ]
         }
+
+        // lan_id = user_info.lan.indexOf("zh")
+        lan_id = user_info.lan.indexOf("ru")
+        // lan_id = user_info.lan.indexOf("en")
+        // lan_id = user_info.lan.indexOf(navigator.language)
 
         // console.log(typeof (user_info))
 
         function fillUserinfo(info) {
-            document.title = info.name + "的名片"
+
+            // Fill tab title
+            document.title = info.name[lan_id]
+
+            // Fill main content
             main_content = document.getElementById("main_content").style.background = 'url(' + info.backgroundImage + ') center / cover no-repeat'
-            document.getElementById("card_name_text").innerHTML = info.name
-            document.getElementById("card_title_text").innerHTML = info.title
+            document.getElementById("card_name_text").innerHTML = info.name[lan_id]
+            document.getElementById("card_title_text").innerHTML = info.title[lan_id]
             document.getElementById("card_head_img").src = info.head
-            document.getElementById("contact_company").innerHTML = info.company
-            document.getElementById("contact_tel").innerHTML = info.contact.tel
-            document.getElementById("contact_mail").innerHTML = info.contact.mail
+            document.getElementById("contact_company").innerHTML = info.company[lan_id]
+            document.getElementById("contact_tel").innerHTML = info.contact.tel[lan_id]
+            document.getElementById("contact_mail").innerHTML = info.contact.mail[lan_id]
             document.getElementById("mini_contact_head").src = info.head
-            document.getElementById("mini_contact_name").innerHTML = info.name
-            document.getElementById("mini_contact_title").innerHTML = info.title
+            document.getElementById("mini_contact_name").innerHTML = info.name[lan_id]
+            document.getElementById("mini_contact_title").innerHTML = info.title[lan_id]
+            document.getElementById("btn_cnt").innerHTML = info.contact.title[lan_id]
             const changeFavicon = link => {
                 let $favicon = document.querySelector('link[rel="icon"]');
                 if ($favicon !== null) {
@@ -289,6 +166,34 @@
                 }
             };
             changeFavicon(info.head)
+
+            // Fill block content
+            for (let i = 0; i < info.content.length; i++) {
+                let blktarget_id = "mini_contact";
+                if (i > 0) {
+                    blktarget_id = "blk_" + (i - 1)
+                }
+                console.log(blktarget_id)
+                const targetBlock = document.getElementById(blktarget_id);
+                const newBlock = document.createElement('div');
+                newBlock.className = 'block';
+                newBlock.id = "blk_" + i;
+
+                if (info.content[i].blktype == "card") {
+                    newBlock.innerHTML = '<p class="block_title">' + info.content[i].title[lan_id] + '</p>';
+                    newBlock.innerHTML += "<hr>"
+                    newBlock.innerHTML += '<p class="block_content">' + info.content[i].content[lan_id] + '</p>';
+                    targetBlock.insertAdjacentElement('afterend', newBlock);
+                }
+                else if (info.content[i].blktype == "list") {
+                    newBlock.innerHTML = '<p class="block_title">' + info.content[i].title[lan_id] + '</p>';
+                    newBlock.innerHTML += "<hr>"
+                    for (let j = 0; j < info.content[i].list.length; j++) {
+                        newBlock.innerHTML += '<p class="block_content">' + info.content[i].list[j][lan_id] + '</p>';
+                    }
+                    targetBlock.insertAdjacentElement('afterend', newBlock);
+                }
+            }
         }
 
         function on_mouse_over(btn) {
@@ -382,25 +287,21 @@
         function generate_div_bk(div_id, img) {
             var div = document.getElementById(div_id)
             const baseList = []
-                // console.log("div size is:" + div.offsetWidth + "*" + div.offsetHeight + "px")
+            // console.log("div size is:" + div.offsetWidth + "*" + div.offsetHeight + "px")
             const canvas = document.createElement("canvas")
             canvas.width = div.offsetWidth
             canvas.height = div.offsetHeight
             var image = new Image()
-                // console.log(img)
+            // console.log(img)
             image.src = img
-                // console.log("Loading image")
+            // console.log("Loading image")
 
             function wait_img_loadding_finish() {
                 if (image.complete) {
                     // console.log("Image loadded")
                     // cut image center
-                    var dx = 0,
-                        dy = 0,
-                        dw = canvas.width,
-                        dh = canvas.height * 0.8
-                    var sw = 0,
-                        sh = 0
+                    var dx = 0, dy = 0, dw = canvas.width, dh = canvas.height * 0.8
+                    var sw = 0, sh = 0
                     if (image.width / image.height < dw / dh) {
                         sw = image.width
                         sh = image.width * (dh / dw)
@@ -412,15 +313,15 @@
                     }
                     contact = canvas.getContext('2d')
                     contact.drawImage(
-                            image,
-                            dx, dy, sw, sh,
-                            0, 0, dw, dh)
-                        // console.log("contact.width:" + canvas.width + "px, contact.height:" + canvas.height + "px")
+                        image,
+                        dx, dy, sw, sh,
+                        0, 0, dw, dh)
+                    // console.log("contact.width:" + canvas.width + "px, contact.height:" + canvas.height + "px")
                     var imgData = contact.getImageData(0, 0, canvas.width, canvas.height);
                     gaussBlur(imgData)
-                        // console.log("imgData.width=" + imgData.width + ", dh=" + dh)
-                        // console.log(typeof (imgData.data))
-                        // darkening background picture
+                    // console.log("imgData.width=" + imgData.width + ", dh=" + dh)
+                    // console.log(typeof (imgData.data))
+                    // darkening background picture
                     var gray_scale = 0.5
                     for (var y = 0; y < dh; y++) {
                         for (var x = 0; x < imgData.width; x++) {
@@ -443,7 +344,7 @@
             wait_img_loadding_finish()
         }
 
-        window.onload = function() {
+        window.onload = function () {
             generate_div_bk("main_box", user_info.backgroundImage)
             fillUserinfo(user_info)
         }
