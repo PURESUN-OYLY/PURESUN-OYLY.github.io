@@ -23,6 +23,9 @@
                 <p id="contact_tel" class="card_horizontal_text">Tel</p>
                 <p id="contact_mail" class="card_horizontal_text">Mail</p>
             </div>
+            <button id="btn_lan" onclick="changeLanguage()">
+                <img src="./images/lan_ico/zh.svg" width="25px">
+            </button>
         </div>
     </div>
     <div id="pinfo_box">
@@ -58,6 +61,17 @@
             margin-block-end: 0;
             font-family: "Microsoft YaHei";
             white-space: pre-line;
+        }
+
+        #btn_lan {
+            padding: 5px;
+            height: 28px;
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            border-radius: 5px;
+            border: none;
+            opacity: 0.75;
         }
     </style>
     <script>
@@ -130,12 +144,13 @@
             ]
         }
 
+        lan_id = user_info.lan.indexOf(navigator.language)
+        if (lan_id < 0 || lan_id > 2) {
+            lan_id = 0
+        }
+        
         // lan_id = user_info.lan.indexOf("zh")
-        lan_id = user_info.lan.indexOf("ru")
         // lan_id = user_info.lan.indexOf("en")
-        // lan_id = user_info.lan.indexOf(navigator.language)
-
-        // console.log(typeof (user_info))
 
         function fillUserinfo(info) {
 
@@ -342,6 +357,17 @@
                 }
             }
             wait_img_loadding_finish()
+        }
+
+        function changeLanguage() {
+            lan_id = (lan_id + 1) % user_info.lan.length
+            document.querySelectorAll('div[id^="blk_"]').forEach(el => el.remove());
+            set_lan_ico()
+            fillUserinfo(user_info)
+        }
+
+        function set_lan_ico() {
+            document.getElementById("btn_lan").innerHTML = "<img src='./images/lan_ico/" + user_info.lan[lan_id] + ".svg' width='25px'>"
         }
 
         window.onload = function () {
