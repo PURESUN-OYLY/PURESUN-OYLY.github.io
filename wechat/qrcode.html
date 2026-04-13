@@ -6,143 +6,21 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="https://res.wx.qq.com/a/wx_fed/assets/res/NTI4MWU5.ico">
-    <title>长按识别二维码添加我的微信</title>
-    <script type="text/javascript" src="https://a.rhurl.cn/js/common/md5.js?v=1.3.6"></script>
-    <script type="text/javascript" src="https://a.rhurl.cn/js/common/method.utils.js?v=1.3.6"></script>
-    <script type="text/javascript" src="https://a.rhurl.cn/js/common/json2.js?v=1.3.6"></script>
-    <script type="text/javascript" src="https://a.rhurl.cn/js/common/jquery-3.6.1.slim.min.js"></script>
-    <style type="text/css">
-        body,
-        html {
-            background-color: #f8f8f8;
-            padding: 0px;
-            margin: 0px;
-            width: 100%;
-            height: 100%;
-            font-size: 15px;
-            color: #484848;
-        }
-
-        .content {
-            width: 100%;
-            height: 100%;
-            max-width: 500px;
-            margin: 0px auto;
-        }
-
-        .content-article {
-            width: 90%;
-            height: auto;
-            float: left;
-            margin: 50px 5%;
-            background-color: #FFFFFF;
-            border-radius: 10px;
-            padding: 18px;
-            box-sizing: border-box;
-        }
-
-        .content-article-full {
-            width: 100%;
-            height: auto;
-            float: left;
-            background-color: #FFFFFF;
-        }
-
-        .content-article-full img {
-            width: 100%;
-            height: auto;
-            float: left;
-            background-color: #FFFFFF;
-        }
-
-        .content-article-header {
-            width: 100%;
-            height: 60px;
-        }
-
-        .content-article-header img {
-            width: 60px;
-            height: 60px;
-            float: left;
-            border-radius: 5px;
-        }
-
-        .content-article-header-right {
-            width: 100%;
-            height: 60px;
-            box-sizing: border-box;
-            margin-top: -60px;
-            float: left;
-            padding: 10px 0px 10px 75px;
-        }
-
-        .content-article-header-right h3 {
-            width: 100%;
-            height: 20px;
-            line-height: 20px;
-            font-size: 16px;
-            float: left;
-            margin: 0px;
-            padding: 0px;
-            font-weight: 500;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .content-article-header-right h5 {
-            width: 100%;
-            height: 20px;
-            line-height: 20px;
-            font-size: 13px;
-            float: left;
-            margin: 0px;
-            margin-top: 5px;
-            padding: 0px;
-            color: #999998;
-            font-weight: 400;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .content-article-qrcode {
-            width: 100%;
-            max-width: 420px;
-            /*max-height: 300px;*/
-            /*float: left;*/
-            margin: 20px 0px;
-        }
-
-        .content-article-footer {
-            width: 100%;
-            float: left;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 500;
-            height: 20px;
-            line-height: 20px;
-            color: #999998;
-        }
-
-        .content-img-qrcode {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-        }
-    </style>
+    <link rel="shortcut icon" href="./images/wechat.ico">
+    <link rel="stylesheet" href="./css/qrcode.css">
+    <script src="./js/qrcode.js"></script>
+    <title>长按添加我的微信</title>
 </head>
 
-<body style="max-width: 450px; max-height: 730px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
+<body
+    style="max-width: 450px; max-height: 730px; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);">
     <!-- <img id="htmlIcon" src="https://a.rhurl.cn/wechat.html" style="width: 0;opacity: 0;"> -->
     <div class="content" style="display: inline;">
         <div class="content-article">
             <div class="content-article-header">
                 <img src="../wechat/images/sun_weichat_head.jpg" id="content-article-header-img">
                 <div class="content-article-header-right">
-                    <h3>欧阳留洋</h3>
+                    <h3>欧阳先生</h3>
                     <h5>星辰大海 我为一粟</h5>
                 </div>
             </div>
@@ -156,69 +34,9 @@
         </div>
     </div>
     <div class="fullScreenDiv">
-        <img class="fullScreen" style="width: 100%; height: auto; position:absolute; left: 0px;top: 0px; display: none;">
+        <img class="fullScreen"
+            style="width: 100%; height: auto; position:absolute; left: 0px;top: 0px; display: none;">
     </div>
-    <script>
-        executeUrl();
-        var json = window.sessionStorage.getItem('KEYDATABEAN');
-
-        if (!isMobile()) {
-            getElement("body").style.maxWidth = "450px";
-            getElement("body").style.maxHeight = "730px";
-            getElement("body").style.position = "absolute";
-            getElement("body").style.left = "50%";
-            getElement("body").style.top = "50%";
-            getElement("body").style.transform = "translate(-50%,-50%)";
-        }
-
-        if (!isEmpty(json)) {
-            var activityQr = getStorageUrlString("activityQr");
-
-            var data = JSON.parse(json);
-            setPagesTitleIcon(data);
-
-            var qrImg;
-            if (!isEmpty(activityQr)) {
-                qrImg = decodeURIComponent(activityQr);
-            } else {
-                qrImg = RES_URL_BASE + decodeURIComponent(data['qr_img']);
-            }
-
-            if (data['applet_page_id'] == 1) {
-                getElement(".fullScreen").style.display = "inline";
-                getElement(".fullScreen").src = qrImg;
-            } else if (data['applet_page_id'] == 2) {
-                getElement(".posterLayout").style.display = "inline";
-                getElement(".posterImg").src = RES_URL_BASE + decodeURIComponent(data['background']);
-                getElement(".qrImg").src = qrImg;
-            } else {
-                getElement(".content").style.display = "inline";
-                getElement("#content-article-header-img").src = RES_URL_BASE + decodeURIComponent(data['head_img']);
-                getElement(".content-article-header h3").innerHTML = data['name'];
-                getElement(".content-article-header h5").innerHTML = data['introduce'];
-                getElement(".content-article-qrcode").src = qrImg;
-                getElement(".content-article-footer").innerHTML = "长按上图二维码识别添加";
-            }
-        }
-
-        var timeOutEvent = 0;
-
-        function longPress() {
-            timeOutEvent = 0;
-            putLongEvent();
-        }
-        window.onload = function () {
-            var qrcode_id = Math.random()
-            qrcode_id *= 10
-            qrcode_id = parseInt(qrcode_id) + 1
-            if (qrcode_id > 8)
-                qrcode_id = 8
-            getElement("#wc_qrcode_img").src = "../wechat/images/wechat_qrcode/sun_wcqr" + qrcode_id + ".png"
-            // alert(window.location.href)
-        }
-    </script>
-
-
 </body>
 
 </html>
