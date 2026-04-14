@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Business Card</title>
+</head>
+
+<body>
+    <div id="main_box">
+        <div id="main_content">
+            <div id="card_head">
+                <img id="card_head_img" src="" alt="">
+            </div>
+            <div id="card_name_title">
+                <p id="card_name_text" class="card_vertical_text">Name</p>
+                <p id="card_title_text" class="card_vertical_text">Title</p>
+            </div>
+            <div id="card_contact">
+                <p id="contact_company" class="card_horizontal_text">Company</p>
+                <p id="contact_tel" class="card_horizontal_text">Tel</p>
+                <p id="contact_mail" class="card_horizontal_text">Mail</p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+
+    </style>
+    <script>
+        function getQuery(key) {
+            let params = new URLSearchParams(window.location.search);
+            return params.get(key);
+        }
+
+        var contact_info = {
+            list:
+                [
+                    { img: "./wechat.svg", title: ["微信", "WeChat", "Вейчат"], subtitle: ["欧阳先生", "欧阳先生", "欧阳先生"], link: "../wechat/qrcode.html" },
+                ],
+        }
+
+        console.log(getQuery("lan_id_father"))
+    </script>
+</body>
+
+</html>

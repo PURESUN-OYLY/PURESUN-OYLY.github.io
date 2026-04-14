@@ -40,8 +40,7 @@
             <div id="mini_contact_btn_box">
                 <span id="mini_contact_btn" onmouseover="this.className = 'mouse_btn_hover'"
                     onmouseleave="this.className = 'mouse_btn_leave'">
-                    <a style="color: rgb(16, 16, 16); text-decoration: none;" id="btn_cnt"
-                        href="./wechat/qrcode.html">Contact</a>
+                    <a style="color: rgb(16, 16, 16); text-decoration: none;" id="btn_cnt">Contact</a>
                 </span>
             </div>
         </div>
@@ -75,80 +74,6 @@
         }
     </style>
     <script>
-        var user_info = {
-            head: "./images/card_head.jpg",
-            backgroundImage: "./images/main_background.png",
-            lan: ["zh", "en", "ru"],
-            blktype: ["card", "list"],
-            name: ["欧阳留洋", "Ouyang Liuyang", "Оу Люян"],
-            title: ["人工智能与机器人", "AI and Robotics", "ИИРСУ"],
-            // title: ["机器人工程师", "Robot Engineer", "Инженер-робототехник()"],
-            company: ["莫斯科大学", "Moscow University", "МГУ"],
-            contact: {
-                title: ["联系方式", "Contact", "Контакты"],
-                tel: ["15378759256", "+86 15378759256", "+7 9151 66 62 33"],
-                mail: ["Mrouyang@live.com", "Mrouyang@live.com", "puresun@mail.ru"],
-                address: ["列宁山1号1栋G单元", "Leninskie Gory, 1, building 1, G unit", "Ленинские горы, д. 1, стр. 1, корп, Г"]
-            },
-            content: [{
-                blktype: "card",
-                title: ["个人简介", "Personal Resume", "Персональный резюме"],
-                content: [
-                    "我是一个人工智能与机器人专业的学生，喜欢研究和实验新的技术。",
-                    "I am a student of artificial intelligence and robotics. I like to research and experiment with new technologies.",
-                    "Я - студент архитектуры и программирования. Я люблю исследовать и экспериментировать с новыми технологиями."
-                ]
-            },
-            {
-                blktype: "list",
-                title: ["教育经历", "Education", "Образование"],
-                list: [
-                    [
-                        "2017.09-2021.06\n河南大学，全日制本科，软件工程专业",
-                        "2017.09-2021.06\nHenan University, full-time BSc, software Engineering",
-                        "2017.09-2021.06\nХэнаньский университет, бакалавр, программная инженерия"
-                    ],
-                    [
-                        "2024.09-2025.06\n普希金学院，俄语",
-                        "2024.09-2025.06\nIRLC of MSU, Student at the IRLC",
-                        "2024.09-2025.06\nИРЯиК МГУ, студент ИРЯиК"
-                    ],
-                    [
-                        "2025.09-至今\n莫斯科大学，全日制硕士，人工智能与机器人专业",
-                        "2025.09-Now\nMSU, full-time Master's, AI & Robotics",
-                        "2025.09-по н.в.\nМГУ, магистратура, искусственный интеллект, работы и систем управления"
-                    ]
-                ]
-            },
-            {
-                blktype: "list",
-                title: ["工作经历", "Work Experience", "Опыт работы"],
-                list: [
-                    [
-                        "2020.09-2021.06\n河南大学，办公室主任助理",
-                        "2020.09-2021.06\nHenan University, Assistant to the Office Director",
-                        "2020.09-2021.06\nХэнаньский университет, ассистент заведующего канцелярией"
-                    ],
-                    [
-                        "2021.06-2022.04\n河南中微真空设备有限公司，硬件工程师",
-                        "2021.06-2022.04\nHenan Zhongwei Vacuum Equipment Co., Ltd., Hardware Engineer",
-                        "2021.06-2022.04\nКомпания «Хэнань Чжунвэй Вакуум Экипмент», инженер-аппаратчик"
-                    ],
-                    [
-                        "2022.04-2024.08\n开封市淳阳科技有限责任公司，技术总监",
-                        "2022.04-2024.08\nKaifeng Chunyang Technology Co., Ltd., Technical Director",
-                        "2022.04-2024.08\nКомпания «Кайфэнь Чюньян Технолоджи», технический директор"
-                    ]
-                ]
-            }
-            ]
-        }
-
-        lan_id = user_info.lan.indexOf(navigator.language)
-        if (lan_id < 0 || lan_id > 2) {
-            lan_id = 0
-        }
-        
         // lan_id = user_info.lan.indexOf("zh")
         // lan_id = user_info.lan.indexOf("en")
 
@@ -362,13 +287,99 @@
         function changeLanguage() {
             lan_id = (lan_id + 1) % user_info.lan.length
             document.querySelectorAll('div[id^="blk_"]').forEach(el => el.remove());
-            set_lan_ico()
+            update_language()
             fillUserinfo(user_info)
         }
 
-        function set_lan_ico() {
+        function update_language() {
             document.getElementById("btn_lan").innerHTML = "<img src='./images/lan_ico/" + user_info.lan[lan_id] + ".svg' width='25px'>"
+            // document.getElementById("btn_cnt").href = "./wechat/qrcode.html?lan_id_father=" + lan_id
+            document.getElementById("btn_cnt").href = "./contact/index.html?lan_id_father=" + lan_id
         }
+        function getQuery(key) {
+            let params = new URLSearchParams(window.location.search);
+            return params.get(key);
+        }
+        var user_info = {
+            head: "./images/card_head.jpg",
+            backgroundImage: "./images/main_background.png",
+            lan: ["zh", "en", "ru"],
+            blktype: ["card", "list"],
+            name: ["欧阳留洋", "Ouyang Liuyang", "Оу Люян"],
+            title: ["人工智能与机器人", "AI and Robotics", "ИИРСУ"],
+            // title: ["机器人工程师", "Robot Engineer", "Инженер-робототехник()"],
+            company: ["莫斯科大学", "Moscow University", "МГУ"],
+            contact: {
+                title: ["联系方式", "Contact", "Контакты"],
+                tel: ["15378759256", "+86 15378759256", "+7 9151 66 62 33"],
+                mail: ["Mrouyang@live.com", "Mrouyang@live.com", "puresun@mail.ru"],
+                address: ["列宁山1号1栋G单元", "Leninskie Gory, 1, building 1, G unit", "Ленинские горы, д. 1, стр. 1, корп, Г"]
+            },
+            content: [{
+                blktype: "card",
+                title: ["个人简介", "Personal Resume", "Персональный резюме"],
+                content: [
+                    "我是一个人工智能与机器人专业的学生，喜欢研究和实验新的技术。",
+                    "I am a student of artificial intelligence and robotics. I like to research and experiment with new technologies.",
+                    "Я - студент архитектуры и программирования. Я люблю исследовать и экспериментировать с новыми технологиями."
+                ]
+            },
+            {
+                blktype: "list",
+                title: ["教育经历", "Education", "Образование"],
+                list: [
+                    [
+                        "2017.09-2021.06\n河南大学，全日制本科，软件工程专业",
+                        "2017.09-2021.06\nHenan University, full-time BSc, software Engineering",
+                        "2017.09-2021.06\nХэнаньский университет, бакалавр, программная инженерия"
+                    ],
+                    [
+                        "2024.09-2025.06\n普希金学院，俄语",
+                        "2024.09-2025.06\nIRLC of MSU, Student at the IRLC",
+                        "2024.09-2025.06\nИРЯиК МГУ, студент ИРЯиК"
+                    ],
+                    [
+                        "2025.09-至今\n莫斯科大学，全日制硕士，人工智能与机器人专业",
+                        "2025.09-Now\nMSU, full-time Master's, AI & Robotics",
+                        "2025.09-по н.в.\nМГУ, магистратура, искусственный интеллект, работы и систем управления"
+                    ]
+                ]
+            },
+            {
+                blktype: "list",
+                title: ["工作经历", "Work Experience", "Опыт работы"],
+                list: [
+                    [
+                        "2020.09-2021.06\n河南大学，办公室主任助理",
+                        "2020.09-2021.06\nHenan University, Assistant to the Office Director",
+                        "2020.09-2021.06\nХэнаньский университет, ассистент заведующего канцелярией"
+                    ],
+                    [
+                        "2021.06-2022.04\n河南中微真空设备有限公司，硬件工程师",
+                        "2021.06-2022.04\nHenan Zhongwei Vacuum Equipment Co., Ltd., Hardware Engineer",
+                        "2021.06-2022.04\nКомпания «Хэнань Чжунвэй Вакуум Экипмент», инженер-аппаратчик"
+                    ],
+                    [
+                        "2022.04-2024.08\n开封市淳阳科技有限责任公司，技术总监",
+                        "2022.04-2024.08\nKaifeng Chunyang Technology Co., Ltd., Technical Director",
+                        "2022.04-2024.08\nКомпания «Кайфэнь Чюньян Технолоджи», технический директор"
+                    ]
+                ]
+            }
+            ]
+        }
+
+        console.log(getQuery("lan_id_father"))
+
+        lan_id = user_info.lan.indexOf(navigator.language)
+        if (lan_id < 0 || lan_id > 2) {
+            lan_id = 0
+        }
+        if(getQuery("lan_id_father") != null) {
+            lan_id = parseInt(getQuery("lan_id_father"))
+        }
+
+        update_language();
 
         window.onload = function () {
             generate_div_bk("main_box", user_info.backgroundImage)

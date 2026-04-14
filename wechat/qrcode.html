@@ -37,6 +37,13 @@
         <img class="fullScreen"
             style="width: 100%; height: auto; position:absolute; left: 0px;top: 0px; display: none;">
     </div>
+    <script>
+        function getQuery(key) {
+            let params = new URLSearchParams(window.location.search);
+            return params.get(key);
+        }
+        console.log(getQuery("lan_id_father"))
+    </script>
 </body>
 
 </html>
